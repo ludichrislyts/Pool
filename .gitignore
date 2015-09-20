@@ -1,1 +1,4 @@
-app_data/database.mdf
+app_data/*
+obj*
+bin/*
+
