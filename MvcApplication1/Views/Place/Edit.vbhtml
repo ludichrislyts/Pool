@@ -21,7 +21,6 @@ End Code
             @Html.EditorFor(Function(model) model.Name)
             @Html.ValidationMessageFor(Function(model) model.Name)
         </div>
-        <br />
         <div class="editor-label">
             @Html.LabelFor(Function(model) model.address)
         </div>
@@ -29,7 +28,6 @@ End Code
             @Html.EditorFor(Function(model) model.address)
             @Html.ValidationMessageFor(Function(model) model.address)
         </div>
-        <br />
         <div class="editor-label">
             @Html.LabelFor(Function(model) model.city)
         </div>
@@ -37,7 +35,6 @@ End Code
             @Html.EditorFor(Function(model) model.city)
             @Html.ValidationMessageFor(Function(model) model.city)
         </div>
-        <br />
         <div class="editor-label">
             @Html.LabelFor(Function(model) model.state)
         </div>
@@ -45,7 +42,6 @@ End Code
             @Html.EditorFor(Function(model) model.state)
             @Html.ValidationMessageFor(Function(model) model.state)
         </div>
-        <br />
         <div class="editor-label">
             @Html.LabelFor(Function(model) model.zip)
         </div>
@@ -53,7 +49,6 @@ End Code
             @Html.EditorFor(Function(model) model.zip)
             @Html.ValidationMessageFor(Function(model) model.zip)
         </div>
-        <br />
         <div class="editor-label">
             @Html.LabelFor(Function(model) model.phone)
         </div>
@@ -61,8 +56,6 @@ End Code
             @Html.EditorFor(Function(model) model.phone)
             @Html.ValidationMessageFor(Function(model) model.phone)
         </div>
-        <br />
-
 
         <p>
             <input type="submit" value="Save" />
