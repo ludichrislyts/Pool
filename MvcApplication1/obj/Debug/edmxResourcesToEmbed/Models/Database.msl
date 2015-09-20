@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DatabaseStoreContainer" CdmEntityContainer="DatabaseContainer">
+    <EntitySetMapping Name="Places">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.Place)">
+        <MappingFragment StoreEntitySet="Places">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="zip" ColumnName="zip" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="PlaceId" ColumnName="PlaceId" />
+          <ScalarProperty Name="AvatarId" ColumnName="AvatarId" />
+          <ScalarProperty Name="BadgeId" ColumnName="BadgeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.Comment)">
+        <MappingFragment StoreEntitySet="Comments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="PlaceId" ColumnName="PlaceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StaticReviews">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.StaticReview)">
+        <MappingFragment StoreEntitySet="StaticReviews">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="review" ColumnName="review" />
+          <ScalarProperty Name="PlaceId" ColumnName="PlaceId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Badges">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.Badge)">
+        <MappingFragment StoreEntitySet="Badges">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="image" ColumnName="image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Avatars">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.Avatar)">
+        <MappingFragment StoreEntitySet="Avatars">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="image" ColumnName="image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Visits">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.Visit)">
+        <MappingFragment StoreEntitySet="Visits">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UserComment" TypeName="Database.UserComment" StoreEntitySet="Users">
+      <EndProperty Name="Comment">
+        <ScalarProperty Name="Id" ColumnName="Comment_Id" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="VisitPlace" TypeName="Database.VisitPlace" StoreEntitySet="VisitPlace">
+      <EndProperty Name="Visit">
+        <ScalarProperty Name="Id" ColumnName="Visits_Id" />
+      </EndProperty>
+      <EndProperty Name="Place">
+        <ScalarProperty Name="Id" ColumnName="Places_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="VisitUser" TypeName="Database.VisitUser" StoreEntitySet="VisitUser">
+      <EndProperty Name="Visit">
+        <ScalarProperty Name="Id" ColumnName="Visits_Id" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="Users_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
