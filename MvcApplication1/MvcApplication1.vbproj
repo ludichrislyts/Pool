@@ -157,6 +157,7 @@
     <Compile Include="App_Start\WebApiConfig.vb" />
     <Compile Include="Controllers\HomeController.vb" />
     <Compile Include="Controllers\PlaceController.vb" />
+    <Compile Include="Controllers\UserController.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -310,6 +311,11 @@
     <Content Include="Views\Place\Edit.vbhtml" />
     <Content Include="Views\Place\Delete.vbhtml" />
     <Content Include="Views\Home\Index.vbhtml" />
+    <Content Include="Views\User\Index.vbhtml" />
+    <Content Include="Views\User\Details.vbhtml" />
+    <Content Include="Views\User\Create.vbhtml" />
+    <Content Include="Views\User\Edit.vbhtml" />
+    <Content Include="Views\User\Delete.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -344,6 +350,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\css\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
