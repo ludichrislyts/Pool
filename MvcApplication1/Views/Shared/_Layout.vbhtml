@@ -6,11 +6,7 @@
 	<title>@ViewBag.Title - My ASP.NET Application</title>
 	@Styles.Render("~/Content/css")
 	@Scripts.Render("~/bundles/modernizr")
-<<<<<<< HEAD
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-=======
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
->>>>>>> origin/master
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top">
