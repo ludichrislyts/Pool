@@ -35,7 +35,7 @@ Namespace MvcApplication1
         ' GET: /Place/Create
 
         Function Create() As ActionResult
-            Return View()
+            Return View(New Place)
         End Function
 
         '
