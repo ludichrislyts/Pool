@@ -55,3 +55,9 @@ C:\Users\Aaron Campf\Documents\GitHub\Pool\MvcApplication1\obj\Debug\MvcApplicat
 C:\Users\Aaron Campf\Documents\GitHub\Pool\MvcApplication1\obj\Debug\MvcApplication1.dll
 C:\Users\Aaron Campf\Documents\GitHub\Pool\MvcApplication1\obj\Debug\MvcApplication1.xml
 C:\Users\Aaron Campf\Documents\GitHub\Pool\MvcApplication1\obj\Debug\MvcApplication1.pdb
+C:\Users\Aaron Campf\Documents\GitHub\Pool\MvcApplication1\bin\System.Net.Http.Formatting.dll
+C:\Users\Aaron Campf\Documents\GitHub\Pool\MvcApplication1\bin\System.Web.Http.dll
+C:\Users\Aaron Campf\Documents\GitHub\Pool\MvcApplication1\bin\System.Web.Http.WebHost.dll
+C:\Users\Aaron Campf\Documents\GitHub\Pool\MvcApplication1\bin\System.Net.Http.Formatting.xml
+C:\Users\Aaron Campf\Documents\GitHub\Pool\MvcApplication1\bin\System.Web.Http.xml
+C:\Users\Aaron Campf\Documents\GitHub\Pool\MvcApplication1\bin\System.Web.Http.WebHost.xml
