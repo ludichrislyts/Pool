@@ -11,23 +11,23 @@ Imports System
 Imports System.Data.Entity
 Imports System.Data.Entity.Infrastructure
 
-Partial Public Class DatabaseContainer
+Partial Public Class DatabaseEntities
     Inherits DbContext
 
     Public Sub New()
-        MyBase.New("name=DatabaseContainer")
+        MyBase.New("name=DatabaseEntities")
     End Sub
 
     Protected Overrides Sub OnModelCreating(modelBuilder As DbModelBuilder)
         Throw New UnintentionalCodeFirstException()
     End Sub
 
-    Public Property Places() As DbSet(Of Place)
-    Public Property Users() As DbSet(Of User)
-    Public Property Comments() As DbSet(Of Comment)
-    Public Property StaticReviews() As DbSet(Of StaticReview)
-    Public Property Badges() As DbSet(Of Badge)
     Public Property Avatars() As DbSet(Of Avatar)
+    Public Property Badges() As DbSet(Of Badge)
+    Public Property Comments() As DbSet(Of Comment)
+    Public Property Places() As DbSet(Of Place)
+    Public Property StaticReviews() As DbSet(Of StaticReview)
+    Public Property Users() As DbSet(Of User)
     Public Property Visits() As DbSet(Of Visit)
 
 End Class

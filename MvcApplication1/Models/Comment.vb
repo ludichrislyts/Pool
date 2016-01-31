@@ -17,6 +17,6 @@ Partial Public Class Comment
     Public Property PlaceId As Integer
 
     Public Overridable Property Place As Place
-    Public Overridable Property Users As ICollection(Of User) = New HashSet(Of User)
+    Public Overridable Property User As User
 
 End Class

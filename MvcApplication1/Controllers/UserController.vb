@@ -4,13 +4,13 @@ Namespace MvcApplication1
     Public Class UserController
         Inherits System.Web.Mvc.Controller
 
-        Private db As New DatabaseContainer
+        Private db As New DatabaseEntities
 
         '
         ' GET: /User/
 
         Function Index() As ActionResult
-            Dim users = db.Users.Include(Function(u) u.Place).Include(Function(u) u.Avatar).Include(Function(u) u.Badge)
+            Dim users = db.Users.Include(Function(u) u.Avatar) '.Include(Function(u) u.Badge)
             Return View(users.ToList())
         End Function
 
@@ -29,16 +29,16 @@ Namespace MvcApplication1
         ' GET: /User/Create
 
         Function Create() As ActionResult
-            ViewBag.PlaceId = New SelectList(db.Places, "Id", "name")
+            'ViewBag.PlaceId = New SelectList(db.Places, "Id", "name")
             ViewBag.AvatarId = New SelectList(db.Avatars, "Id", "image")
-            ViewBag.BadgeId = New SelectList(db.Badges, "Id", "image")
+            'ViewBag.BadgeId = New SelectList(db.Badges, "Id", "image")
             Return View()
         End Function
 
         '
         ' POST: /User/Create
 
-        <HttpPost()> _
+        <HttpPost()>
         Function Create(ByVal user As User) As ActionResult
             If ModelState.IsValid Then
                 db.Users.Add(user)
@@ -46,9 +46,8 @@ Namespace MvcApplication1
                 Return RedirectToAction("Index")
             End If
 
-            ViewBag.PlaceId = New SelectList(db.Places, "Id", "name", user.PlaceId)
             ViewBag.AvatarId = New SelectList(db.Avatars, "Id", "image", user.AvatarId)
-            ViewBag.BadgeId = New SelectList(db.Badges, "Id", "image", user.BadgeId)
+            'ViewBag.BadgeId = New SelectList(db.Badges, "Id", "image", user.BadgeId)
             Return View(user)
         End Function
 
@@ -60,16 +59,16 @@ Namespace MvcApplication1
             If IsNothing(user) Then
                 Return HttpNotFound()
             End If
-            ViewBag.PlaceId = New SelectList(db.Places, "Id", "name", user.PlaceId)
+
             ViewBag.AvatarId = New SelectList(db.Avatars, "Id", "image", user.AvatarId)
-            ViewBag.BadgeId = New SelectList(db.Badges, "Id", "image", user.BadgeId)
+            'ViewBag.BadgeId = New SelectList(db.Badges, "Id", "image", user.BadgeId)
             Return View(user)
         End Function
 
         '
         ' POST: /User/Edit/5
 
-        <HttpPost()> _
+        <HttpPost()>
         Function Edit(ByVal user As User) As ActionResult
             If ModelState.IsValid Then
                 db.Entry(user).State = EntityState.Modified
@@ -77,9 +76,8 @@ Namespace MvcApplication1
                 Return RedirectToAction("Index")
             End If
 
-            ViewBag.PlaceId = New SelectList(db.Places, "Id", "name", user.PlaceId)
             ViewBag.AvatarId = New SelectList(db.Avatars, "Id", "image", user.AvatarId)
-            ViewBag.BadgeId = New SelectList(db.Badges, "Id", "image", user.BadgeId)
+            'ViewBag.BadgeId = New SelectList(db.Badges, "Id", "image", user.BadgeId)
             Return View(user)
         End Function
 
@@ -97,8 +95,8 @@ Namespace MvcApplication1
         '
         ' POST: /User/Delete/5
 
-        <HttpPost()> _
-        <ActionName("Delete")> _
+        <HttpPost()>
+        <ActionName("Delete")>
         Function DeleteConfirmed(ByVal id As Integer) As RedirectToRouteResult
             Dim user As User = db.Users.Find(id)
             db.Users.Remove(user)

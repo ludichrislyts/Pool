@@ -14,6 +14,6 @@ Partial Public Class Badge
     Public Property Id As Integer
     Public Property image As String
 
-    Public Overridable Property Users As ICollection(Of User) = New HashSet(Of User)
+    Public Overridable Property User As ICollection(Of User) = New HashSet(Of User)
 
 End Class

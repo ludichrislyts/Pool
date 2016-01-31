@@ -4,7 +4,7 @@ Namespace MvcApplication1
     Public Class PlaceController
         Inherits System.Web.Mvc.Controller
 
-        Private db As New DatabaseContainer
+        Private db As New DatabaseEntities
 
         '
         ' GET: /Place/
@@ -22,13 +22,15 @@ Namespace MvcApplication1
         Function Details(Optional ByVal id As Integer = Nothing) As ActionResult
             Dim place As Place = db.Places.Find(id)
 
-
-
             If IsNothing(place) Then
                 'Return HttpNotFound()
                 Return View(place)
             End If
             Return View(place)
+        End Function
+
+        Function Jason() As ActionResult
+            Return Json(db.Places.ToList(), JsonRequestBehavior.AllowGet)
         End Function
 
         '
@@ -41,8 +43,8 @@ Namespace MvcApplication1
         '
         ' POST: /Place/Create
 
-        <HttpPost()> _
-        Function Create(ByVal place As place) As ActionResult
+        <HttpPost()>
+        Function Create(ByVal place As Place) As ActionResult
             If ModelState.IsValid Then
                 db.Places.Add(place)
                 db.SaveChanges()
@@ -66,7 +68,7 @@ Namespace MvcApplication1
         '
         ' POST: /Place/Edit/5
 
-        <HttpPost()> _
+        <HttpPost()>
         Function Edit(ByVal place As Place) As ActionResult
             Me.Request.Params.ToString()
 
@@ -97,8 +99,8 @@ Namespace MvcApplication1
         '
         ' POST: /Place/Delete/5
 
-        <HttpPost()> _
-        <ActionName("Delete")> _
+        <HttpPost()>
+        <ActionName("Delete")>
         Function DeleteConfirmed(ByVal id As Integer) As RedirectToRouteResult
             Dim place As Place = db.Places.Find(id)
             db.Places.Remove(place)

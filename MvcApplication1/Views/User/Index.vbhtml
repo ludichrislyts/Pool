@@ -19,16 +19,10 @@ End Code
         </th>
         <th>
             @Html.DisplayNameFor(Function(model) model.password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.Place.name)
-        </th>
+        </th>       
         <th>
             @Html.DisplayNameFor(Function(model) model.Avatar.image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.Badge.image)
-        </th>
+        </th>     
         <th></th>
     </tr>
 
@@ -45,13 +39,7 @@ End Code
             @Html.DisplayFor(Function(modelItem) currentItem.password)
         </td>
         <td>
-            @Html.DisplayFor(Function(modelItem) currentItem.Place.name)
-        </td>
-        <td>
             @Html.DisplayFor(Function(modelItem) currentItem.Avatar.image)
-        </td>
-        <td>
-            @Html.DisplayFor(Function(modelItem) currentItem.Badge.image)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", New With {.id = currentItem.Id}) |

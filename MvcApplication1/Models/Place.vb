@@ -19,9 +19,8 @@ Partial Public Class Place
     Public Property zip As Integer
     Public Property phone As String
 
-    Public Overridable Property Users As ICollection(Of User) = New HashSet(Of User)
-    Public Overridable Property StaticReviews As ICollection(Of StaticReview) = New HashSet(Of StaticReview)
     Public Overridable Property Comments As ICollection(Of Comment) = New HashSet(Of Comment)
+    Public Overridable Property StaticReviews As ICollection(Of StaticReview) = New HashSet(Of StaticReview)
     Public Overridable Property Visits As ICollection(Of Visit) = New HashSet(Of Visit)
 
 End Class

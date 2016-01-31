@@ -4,24 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="82f190aa61184e33a042abed34f99b77" Name="Diagram1" >
-        <EntityTypeShape EntityType="Database.Place" Width="1.5" PointX="1" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Database.User" Width="1.5" PointX="6.75" PointY="1" />
-        <EntityTypeShape EntityType="Database.Comment" Width="1.5" PointX="4.375" PointY="0.875" />
-        <EntityTypeShape EntityType="Database.Badge" Width="1.5" PointX="9" PointY="2.625" />
-        <EntityTypeShape EntityType="Database.Avatar" Width="1.5" PointX="9" PointY="0.875" />
-        <EntityTypeShape EntityType="Database.StaticReview" Width="1.5" PointX="3.875" PointY="3.25" />
-        <AssociationConnector Association="Database.PlaceUser" />
-        <AssociationConnector Association="Database.AvatarUser" />
-        <AssociationConnector Association="Database.BadgeUser" />
-        <AssociationConnector Association="Database.PlaceStaticReview" />
-        <AssociationConnector Association="Database.CommentPlace" />
-        <AssociationConnector Association="Database.UserComment" />
-        <AssociationConnector Association="Database.UserStaticReview" />
-        <EntityTypeShape EntityType="Database.Visit" Width="1.5" PointX="1.625" PointY="4.25" />
-        <AssociationConnector Association="Database.VisitPlace" />
-        <AssociationConnector Association="Database.VisitUser" />
-        </Diagram>
+      <Diagram DiagramId="43d1725d9f0243779e779b2c04e7cc34" Name="Diagram1">
+        <EntityTypeShape EntityType="DatabaseModel.Avatar" Width="1.5" PointX="9.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Badge" Width="1.5" PointX="9.375" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Comment" Width="1.5" PointX="1.125" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Place" Width="1.5" PointX="1.125" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.StaticReview" Width="1.5" PointX="5.625" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.User" Width="1.5" PointX="5.375" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Visit" Width="1.5" PointX="7.5" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="DatabaseModel.AvatarUser" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.CommentPlace" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.PlaceStaticReview" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.UserStaticReview" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.VisitPlace" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.VisitUser" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.UserBadge" />
+        <AssociationConnector Association="DatabaseModel.UserComment" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
