@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="DatabaseModel.Avatar" Width="1.5" PointX="9.75" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DatabaseModel.Badge" Width="1.5" PointX="9.375" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DatabaseModel.Comment" Width="1.5" PointX="1.125" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatabaseModel.Place" Width="1.5" PointX="1.125" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Place" Width="1.5" PointX="0.75" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DatabaseModel.StaticReview" Width="1.5" PointX="5.625" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DatabaseModel.User" Width="1.5" PointX="5.375" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DatabaseModel.Visit" Width="1.5" PointX="7.5" PointY="0.875" IsExpanded="true" />
