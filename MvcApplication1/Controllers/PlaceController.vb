@@ -29,7 +29,7 @@ Namespace MvcApplication1
             Return View(place)
         End Function
 
-        Function Jason() As ActionResult
+        Function [Get]() As ActionResult
             Return Json(db.Places.ToList(), JsonRequestBehavior.AllowGet)
         End Function
 
