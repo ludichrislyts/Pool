@@ -10,62 +10,46 @@ End Code
     @Html.ValidationSummary(True)
 
     @<fieldset>
-        <legend>User</legend>
+    <legend>User</legend>
 
-        @Html.HiddenFor(Function(model) model.Id)
+    @Html.HiddenFor(Function(model) model.Id)
 
-        <div class="editor-label">
-            @Html.LabelFor(Function(model) model.name)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(Function(model) model.name)
-            @Html.ValidationMessageFor(Function(model) model.name)
-        </div>
+    <div class="editor-label">
+        @Html.LabelFor(Function(model) model.name)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(Function(model) model.name)
+        @Html.ValidationMessageFor(Function(model) model.name)
+    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(Function(model) model.email)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(Function(model) model.email)
-            @Html.ValidationMessageFor(Function(model) model.email)
-        </div>
+    <div class="editor-label">
+        @Html.LabelFor(Function(model) model.email)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(Function(model) model.email)
+        @Html.ValidationMessageFor(Function(model) model.email)
+    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(Function(model) model.password)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(Function(model) model.password)
-            @Html.ValidationMessageFor(Function(model) model.password)
-        </div>
+    <div class="editor-label">
+        @Html.LabelFor(Function(model) model.password)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(Function(model) model.password)
+        @Html.ValidationMessageFor(Function(model) model.password)
+    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(Function(model) model.PlaceId, "Place")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("PlaceId", String.Empty)
-            @Html.ValidationMessageFor(Function(model) model.PlaceId)
-        </div>
+    <div class="editor-label">
+        @Html.LabelFor(Function(model) model.Avatar, "Avatar")
+    </div>
+    <div class="editor-field">
+        @Html.DropDownList("AvatarId", String.Empty)
+        @Html.ValidationMessageFor(Function(model) model.Avatar)
+    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(Function(model) model.AvatarId, "Avatar")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("AvatarId", String.Empty)
-            @Html.ValidationMessageFor(Function(model) model.AvatarId)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(Function(model) model.BadgeId, "Badge")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("BadgeId", String.Empty)
-            @Html.ValidationMessageFor(Function(model) model.BadgeId)
-        </div>
-
-        <p>
-            <input type="submit" value="Save" />
-        </p>
-    </fieldset>
+    <p>
+        <input type="submit" value="Save" />
+    </p>
+</fieldset>
 End Using
 
 <div>

@@ -22,7 +22,6 @@ Partial Public Class DatabaseEntities
         Throw New UnintentionalCodeFirstException()
     End Sub
 
-    Public Property Avatars() As DbSet(Of Avatar)
     Public Property Badges() As DbSet(Of Badge)
     Public Property Comments() As DbSet(Of Comment)
     Public Property Places() As DbSet(Of Place)

@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/30/2016 19:28:55
--- Generated from EDMX file: C:\Users\ludichrislyts\Desktop\Pool\MvcApplication1\Models\Database.edmx
+-- Date Created: 02/14/2016 15:49:29
+-- Generated from EDMX file: C:\Users\Aaron Campf\Documents\GitHub\Pool\MvcApplication1\Models\Database.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,21 +17,6 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_AvatarUser]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Users] DROP CONSTRAINT [FK_AvatarUser];
-GO
-IF OBJECT_ID(N'[dbo].[FK_CommentPlace]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Comments] DROP CONSTRAINT [FK_CommentPlace];
-GO
-IF OBJECT_ID(N'[dbo].[FK_UserComment]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Users] DROP CONSTRAINT [FK_UserComment];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PlaceStaticReview]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[StaticReviews] DROP CONSTRAINT [FK_PlaceStaticReview];
-GO
-IF OBJECT_ID(N'[dbo].[FK_UserStaticReview]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[StaticReviews] DROP CONSTRAINT [FK_UserStaticReview];
-GO
 IF OBJECT_ID(N'[dbo].[FK_VisitPlace_Places]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[VisitPlace] DROP CONSTRAINT [FK_VisitPlace_Places];
 GO
@@ -50,14 +35,23 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_UserBadge_Badge]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UserBadge] DROP CONSTRAINT [FK_UserBadge_Badge];
 GO
+IF OBJECT_ID(N'[dbo].[FK_UserComment]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Comments] DROP CONSTRAINT [FK_UserComment];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PlaceStaticReview]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[StaticReviews] DROP CONSTRAINT [FK_PlaceStaticReview];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PlaceComment]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Comments] DROP CONSTRAINT [FK_PlaceComment];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserStaticReview]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[StaticReviews] DROP CONSTRAINT [FK_UserStaticReview];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Avatars]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Avatars];
-GO
 IF OBJECT_ID(N'[dbo].[Badges]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Badges];
 GO
@@ -90,13 +84,6 @@ GO
 -- Creating all tables
 -- --------------------------------------------------
 
--- Creating table 'Avatars'
-CREATE TABLE [dbo].[Avatars] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [image] nvarchar(max)  NOT NULL
-);
-GO
-
 -- Creating table 'Badges'
 CREATE TABLE [dbo].[Badges] (
     [Id] int IDENTITY(1,1) NOT NULL,
@@ -108,9 +95,8 @@ GO
 CREATE TABLE [dbo].[Comments] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [text] nvarchar(max)  NOT NULL,
-    [UserId] int  NOT NULL,
-    [PlaceId] int  NOT NULL,
-    [User_Id] int  NOT NULL
+    [User_Id] int  NULL,
+    [Place_Id] int  NOT NULL
 );
 GO
 
@@ -130,8 +116,8 @@ GO
 CREATE TABLE [dbo].[StaticReviews] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [review] nvarchar(max)  NOT NULL,
-    [PlaceId] int  NOT NULL,
-    [UserId] int  NOT NULL
+    [Place_Id] int  NOT NULL,
+    [User_Id] int  NULL
 );
 GO
 
@@ -141,7 +127,7 @@ CREATE TABLE [dbo].[Users] (
     [name] nvarchar(max)  NOT NULL,
     [email] nvarchar(max)  NOT NULL,
     [password] nvarchar(max)  NOT NULL,
-    [AvatarId] int  NOT NULL
+    [Avatar] nvarchar(max)  NULL
 );
 GO
 
@@ -175,12 +161,6 @@ GO
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
-
--- Creating primary key on [Id] in table 'Avatars'
-ALTER TABLE [dbo].[Avatars]
-ADD CONSTRAINT [PK_Avatars]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
 
 -- Creating primary key on [Id] in table 'Badges'
 ALTER TABLE [dbo].[Badges]
@@ -239,66 +219,6 @@ GO
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
-
--- Creating foreign key on [AvatarId] in table 'Users'
-ALTER TABLE [dbo].[Users]
-ADD CONSTRAINT [FK_AvatarUser]
-    FOREIGN KEY ([AvatarId])
-    REFERENCES [dbo].[Avatars]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_AvatarUser'
-CREATE INDEX [IX_FK_AvatarUser]
-ON [dbo].[Users]
-    ([AvatarId]);
-GO
-
--- Creating foreign key on [PlaceId] in table 'Comments'
-ALTER TABLE [dbo].[Comments]
-ADD CONSTRAINT [FK_CommentPlace]
-    FOREIGN KEY ([PlaceId])
-    REFERENCES [dbo].[Places]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_CommentPlace'
-CREATE INDEX [IX_FK_CommentPlace]
-ON [dbo].[Comments]
-    ([PlaceId]);
-GO
-
--- Creating foreign key on [PlaceId] in table 'StaticReviews'
-ALTER TABLE [dbo].[StaticReviews]
-ADD CONSTRAINT [FK_PlaceStaticReview]
-    FOREIGN KEY ([PlaceId])
-    REFERENCES [dbo].[Places]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_PlaceStaticReview'
-CREATE INDEX [IX_FK_PlaceStaticReview]
-ON [dbo].[StaticReviews]
-    ([PlaceId]);
-GO
-
--- Creating foreign key on [UserId] in table 'StaticReviews'
-ALTER TABLE [dbo].[StaticReviews]
-ADD CONSTRAINT [FK_UserStaticReview]
-    FOREIGN KEY ([UserId])
-    REFERENCES [dbo].[Users]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_UserStaticReview'
-CREATE INDEX [IX_FK_UserStaticReview]
-ON [dbo].[StaticReviews]
-    ([UserId]);
-GO
 
 -- Creating foreign key on [Places_Id] in table 'VisitPlace'
 ALTER TABLE [dbo].[VisitPlace]
@@ -384,6 +304,51 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_UserComment'
 CREATE INDEX [IX_FK_UserComment]
 ON [dbo].[Comments]
+    ([User_Id]);
+GO
+
+-- Creating foreign key on [Place_Id] in table 'StaticReviews'
+ALTER TABLE [dbo].[StaticReviews]
+ADD CONSTRAINT [FK_PlaceStaticReview]
+    FOREIGN KEY ([Place_Id])
+    REFERENCES [dbo].[Places]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PlaceStaticReview'
+CREATE INDEX [IX_FK_PlaceStaticReview]
+ON [dbo].[StaticReviews]
+    ([Place_Id]);
+GO
+
+-- Creating foreign key on [Place_Id] in table 'Comments'
+ALTER TABLE [dbo].[Comments]
+ADD CONSTRAINT [FK_PlaceComment]
+    FOREIGN KEY ([Place_Id])
+    REFERENCES [dbo].[Places]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PlaceComment'
+CREATE INDEX [IX_FK_PlaceComment]
+ON [dbo].[Comments]
+    ([Place_Id]);
+GO
+
+-- Creating foreign key on [User_Id] in table 'StaticReviews'
+ALTER TABLE [dbo].[StaticReviews]
+ADD CONSTRAINT [FK_UserStaticReview]
+    FOREIGN KEY ([User_Id])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserStaticReview'
+CREATE INDEX [IX_FK_UserStaticReview]
+ON [dbo].[StaticReviews]
     ([User_Id]);
 GO
 

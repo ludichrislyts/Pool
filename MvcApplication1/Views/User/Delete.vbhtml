@@ -30,27 +30,14 @@ End Code
     <div class="display-field">
         @Html.DisplayFor(Function(model) model.password)
     </div>
-
+    
     <div class="display-label">
-        @Html.DisplayNameFor(Function(model) model.Place.name)
+        @Html.DisplayNameFor(Function(model) model.Avatar)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(Function(model) model.Place.name)
+        @Html.DisplayFor(Function(model) model.Avatar)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(Function(model) model.Avatar.image)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(Function(model) model.Avatar.image)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(Function(model) model.Badge.image)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(Function(model) model.Badge.image)
-    </div>
 </fieldset>
 @Using Html.BeginForm()
     @<p>

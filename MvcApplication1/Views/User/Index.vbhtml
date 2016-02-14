@@ -21,7 +21,7 @@ End Code
             @Html.DisplayNameFor(Function(model) model.password)
         </th>       
         <th>
-            @Html.DisplayNameFor(Function(model) model.Avatar.image)
+            @Html.DisplayNameFor(Function(model) model.Avatar)
         </th>     
         <th></th>
     </tr>
@@ -39,7 +39,7 @@ End Code
             @Html.DisplayFor(Function(modelItem) currentItem.password)
         </td>
         <td>
-            @Html.DisplayFor(Function(modelItem) currentItem.Avatar.image)
+            @Html.DisplayFor(Function(modelItem) currentItem.Avatar)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", New With {.id = currentItem.Id}) |

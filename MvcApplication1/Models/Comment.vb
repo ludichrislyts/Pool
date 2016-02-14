@@ -13,10 +13,8 @@ Imports System.Collections.Generic
 Partial Public Class Comment
     Public Property Id As Integer
     Public Property text As String
-    Public Property UserId As Integer
-    Public Property PlaceId As Integer
 
-    Public Overridable Property Place As Place
     Public Overridable Property User As User
+    Public Overridable Property Place As Place
 
 End Class

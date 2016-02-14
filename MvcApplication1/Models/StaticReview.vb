@@ -13,8 +13,6 @@ Imports System.Collections.Generic
 Partial Public Class StaticReview
     Public Property Id As Integer
     Public Property review As String
-    Public Property PlaceId As Integer
-    Public Property UserId As Integer
 
     Public Overridable Property Place As Place
     Public Overridable Property User As User

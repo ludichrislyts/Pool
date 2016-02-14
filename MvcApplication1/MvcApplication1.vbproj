@@ -169,9 +169,6 @@
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Avatar.vb">
-      <DependentUpon>Database.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Badge.vb">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>

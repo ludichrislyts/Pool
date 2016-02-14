@@ -37,11 +37,11 @@ End Code
     </div>
 
     <div class="editor-label">
-        @Html.LabelFor(Function(model) model.AvatarId, "Avatar")
+        @Html.LabelFor(Function(model) model.Avatar, "Avatar")
     </div>
     <div class="editor-field">
         @Html.DropDownList("AvatarId", String.Empty)
-        @Html.ValidationMessageFor(Function(model) model.AvatarId)
+        @Html.ValidationMessageFor(Function(model) model.Avatar)
     </div>
 
     <p>

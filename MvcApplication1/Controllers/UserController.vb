@@ -10,8 +10,8 @@ Namespace MvcApplication1
         ' GET: /User/
 
         Function Index() As ActionResult
-            Dim users = db.Users.Include(Function(u) u.Avatar) '.Include(Function(u) u.Badge)
-            Return View(users.ToList())
+            'Dim users = db.Users.Include(Function(u) u.Avatar) '.Include(Function(u) u.Badge)
+            Return View(db.Users.ToList())
         End Function
 
         '
@@ -29,9 +29,6 @@ Namespace MvcApplication1
         ' GET: /User/Create
 
         Function Create() As ActionResult
-            'ViewBag.PlaceId = New SelectList(db.Places, "Id", "name")
-            ViewBag.AvatarId = New SelectList(db.Avatars, "Id", "image")
-            'ViewBag.BadgeId = New SelectList(db.Badges, "Id", "image")
             Return View()
         End Function
 
@@ -46,8 +43,6 @@ Namespace MvcApplication1
                 Return RedirectToAction("Index")
             End If
 
-            ViewBag.AvatarId = New SelectList(db.Avatars, "Id", "image", user.AvatarId)
-            'ViewBag.BadgeId = New SelectList(db.Badges, "Id", "image", user.BadgeId)
             Return View(user)
         End Function
 
@@ -60,8 +55,6 @@ Namespace MvcApplication1
                 Return HttpNotFound()
             End If
 
-            ViewBag.AvatarId = New SelectList(db.Avatars, "Id", "image", user.AvatarId)
-            'ViewBag.BadgeId = New SelectList(db.Badges, "Id", "image", user.BadgeId)
             Return View(user)
         End Function
 
@@ -76,7 +69,6 @@ Namespace MvcApplication1
                 Return RedirectToAction("Index")
             End If
 
-            ViewBag.AvatarId = New SelectList(db.Avatars, "Id", "image", user.AvatarId)
             'ViewBag.BadgeId = New SelectList(db.Badges, "Id", "image", user.BadgeId)
             Return View(user)
         End Function
@@ -99,6 +91,22 @@ Namespace MvcApplication1
         <ActionName("Delete")>
         Function DeleteConfirmed(ByVal id As Integer) As RedirectToRouteResult
             Dim user As User = db.Users.Find(id)
+            For Each Item In user.Badges.ToArray
+                db.Badges.Remove(Item)
+            Next
+
+            For Each Item In user.Visits.ToArray
+                db.Visits.Remove(Item)
+            Next
+
+            For Each Item In user.Comments.ToArray
+                user.Comments.Remove(Item)
+            Next
+
+            For Each Item In user.StaticReviews.ToArray
+                user.StaticReviews.Remove(Item)
+            Next
+
             db.Users.Remove(user)
             db.SaveChanges()
             Return RedirectToAction("Index")

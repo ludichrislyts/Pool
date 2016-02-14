@@ -44,7 +44,7 @@ Public Class CommentController
             Return RedirectToAction("Index")
         End If
 
-        ViewBag.PlaceId = New SelectList(db.Places, "Id", "name", comment.PlaceId)
+        ViewBag.PlaceId = New SelectList(db.Places, "Id", "name", comment.Place)
         Return View(comment)
     End Function
 
@@ -56,7 +56,7 @@ Public Class CommentController
         If IsNothing(comment) Then
             Return HttpNotFound()
         End If
-        ViewBag.PlaceId = New SelectList(db.Places, "Id", "name", comment.PlaceId)
+        ViewBag.PlaceId = New SelectList(db.Places, "Id", "name", comment.Place)
         Return View(comment)
     End Function
 
@@ -72,7 +72,7 @@ Public Class CommentController
             Return RedirectToAction("Index")
         End If
 
-        ViewBag.PlaceId = New SelectList(db.Places, "Id", "name", comment.PlaceId)
+        ViewBag.PlaceId = New SelectList(db.Places, "Id", "name", comment.Place)
         Return View(comment)
     End Function
 
