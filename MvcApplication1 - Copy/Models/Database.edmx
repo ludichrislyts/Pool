@@ -383,11 +383,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="PlaceStaticReview">
-          <End Role="Places" Type="Self.Place" Multiplicity="1" >
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="StaticReviews" Type="Self.StaticReview" Multiplicity="*" >
-          </End>
+          <End Role="Places" Type="Self.Place" Multiplicity="1" />
+          <End Role="StaticReviews" Type="Self.StaticReview" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Places">
               <PropertyRef Name="Id" />
@@ -410,13 +407,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="VisitPlace">
-          <End Role="Places" Type="Self.Place" Multiplicity="*" >
-          </End>
+          <End Role="Places" Type="Self.Place" Multiplicity="*" />
           <End Role="Visits" Type="Self.Visit" Multiplicity="*" />
         </Association>
         <Association Name="VisitUser">
-          <End Role="Users" Type="Self.User" Multiplicity="*" >
-          </End>
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
           <End Role="Visits" Type="Self.Visit" Multiplicity="*" />
         </Association>
         <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">

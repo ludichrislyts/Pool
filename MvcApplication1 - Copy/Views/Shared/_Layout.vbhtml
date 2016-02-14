@@ -24,8 +24,6 @@
                     <li>@Html.ActionLink("Places", "Index", "Place")</li>
                     <li>@Html.ActionLink("Users", "Index", "User")</li>
 
-
-                    <li>@Html.ActionLink("Seed", "Seed", "Home")</li>
                 </ul>
 			</div>
 		</div>
