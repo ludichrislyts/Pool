@@ -22,6 +22,7 @@ Partial Public Class Comment
         End Set
     End Property
     Public Property text As String
+    Public Property [Date] As Date
 
     Public Overridable Property User As User
     Public Overridable Property Place As Place

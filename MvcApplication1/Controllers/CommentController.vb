@@ -54,6 +54,7 @@ Public Class CommentController
     <HttpPost()>
     <ValidateAntiForgeryToken()>
     Function Create(ByVal comment As Comment, Placeid As Integer) As ActionResult
+        comment.Date = Now
         If ModelState.IsValid Then
             Dim Place = db.Places.Find(Placeid)
             Place.Comments.Add(comment)

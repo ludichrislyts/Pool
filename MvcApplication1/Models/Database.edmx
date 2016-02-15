@@ -275,6 +275,7 @@
           <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="User" Relationship="DatabaseModel.UserComment" FromRole="Comment" ToRole="User" />
           <NavigationProperty Name="Place" Relationship="DatabaseModel.PlaceComment" FromRole="Comment" ToRole="Place" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="Place">
           <Key>
