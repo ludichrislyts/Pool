@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/14/2016 15:49:29
+-- Date Created: 02/14/2016 17:20:31
 -- Generated from EDMX file: C:\Users\Aaron Campf\Documents\GitHub\Pool\MvcApplication1\Models\Database.edmx
 -- --------------------------------------------------
 
@@ -112,10 +112,11 @@ CREATE TABLE [dbo].[Places] (
 );
 GO
 
--- Creating table 'StaticReviews'
-CREATE TABLE [dbo].[StaticReviews] (
+-- Creating table 'Reviews'
+CREATE TABLE [dbo].[Reviews] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [review] nvarchar(max)  NOT NULL,
+    [rating] smallint  NOT NULL,
     [Place_Id] int  NOT NULL,
     [User_Id] int  NULL
 );
@@ -133,7 +134,8 @@ GO
 
 -- Creating table 'Visits'
 CREATE TABLE [dbo].[Visits] (
-    [Id] int IDENTITY(1,1) NOT NULL
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Date] datetime  NOT NULL
 );
 GO
 
@@ -180,9 +182,9 @@ ADD CONSTRAINT [PK_Places]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'StaticReviews'
-ALTER TABLE [dbo].[StaticReviews]
-ADD CONSTRAINT [PK_StaticReviews]
+-- Creating primary key on [Id] in table 'Reviews'
+ALTER TABLE [dbo].[Reviews]
+ADD CONSTRAINT [PK_Reviews]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -307,8 +309,8 @@ ON [dbo].[Comments]
     ([User_Id]);
 GO
 
--- Creating foreign key on [Place_Id] in table 'StaticReviews'
-ALTER TABLE [dbo].[StaticReviews]
+-- Creating foreign key on [Place_Id] in table 'Reviews'
+ALTER TABLE [dbo].[Reviews]
 ADD CONSTRAINT [FK_PlaceStaticReview]
     FOREIGN KEY ([Place_Id])
     REFERENCES [dbo].[Places]
@@ -318,7 +320,7 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_PlaceStaticReview'
 CREATE INDEX [IX_FK_PlaceStaticReview]
-ON [dbo].[StaticReviews]
+ON [dbo].[Reviews]
     ([Place_Id]);
 GO
 
@@ -337,8 +339,8 @@ ON [dbo].[Comments]
     ([Place_Id]);
 GO
 
--- Creating foreign key on [User_Id] in table 'StaticReviews'
-ALTER TABLE [dbo].[StaticReviews]
+-- Creating foreign key on [User_Id] in table 'Reviews'
+ALTER TABLE [dbo].[Reviews]
 ADD CONSTRAINT [FK_UserStaticReview]
     FOREIGN KEY ([User_Id])
     REFERENCES [dbo].[Users]
@@ -348,7 +350,7 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_UserStaticReview'
 CREATE INDEX [IX_FK_UserStaticReview]
-ON [dbo].[StaticReviews]
+ON [dbo].[Reviews]
     ([User_Id]);
 GO
 

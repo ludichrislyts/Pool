@@ -165,6 +165,7 @@
     <Compile Include="Controllers\CommentController.vb" />
     <Compile Include="Controllers\HomeController.vb" />
     <Compile Include="Controllers\PlaceController.vb" />
+    <Compile Include="Controllers\ReviewController.vb" />
     <Compile Include="Controllers\UserController.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
@@ -193,7 +194,10 @@
     <Compile Include="Models\Place.vb">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\StaticReview.vb">
+    <Compile Include="Models\Rating.vb">
+      <DependentUpon>Database.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Review.vb">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.vb">
@@ -328,6 +332,11 @@
     <Content Include="Views\Comment\Create.vbhtml" />
     <Content Include="Views\Comment\Edit.vbhtml" />
     <Content Include="Views\Comment\Delete.vbhtml" />
+    <Content Include="Views\Review\Index.vbhtml" />
+    <Content Include="Views\Review\Details.vbhtml" />
+    <Content Include="Views\Review\Create.vbhtml" />
+    <Content Include="Views\Review\Edit.vbhtml" />
+    <Content Include="Views\Review\Delete.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />

@@ -5,6 +5,22 @@ Public Class CommentController
 
     Private db As New DatabaseEntities
 
+#Region "       Rest API    >>>"
+    Function [Get](Optional ByVal id As Integer = 0) As ActionResult
+        If id = 0 Then
+            Return Json(db.Comments.ToList, JsonRequestBehavior.AllowGet)
+        Else
+            Return Json(db.Comments.Find(id), JsonRequestBehavior.AllowGet)
+        End If
+    End Function
+
+
+#End Region
+
+
+
+
+
     '
     ' GET: /Comment/
 
@@ -27,9 +43,9 @@ Public Class CommentController
     '
     ' GET: /Comment/Create
 
-    Function Create() As ActionResult
+    Function Create(PlaceId As Integer) As ActionResult
         ViewBag.PlaceId = New SelectList(db.Places, "Id", "name")
-        Return View()
+        Return View(New Comment)
     End Function
 
     '
@@ -37,9 +53,10 @@ Public Class CommentController
 
     <HttpPost()>
     <ValidateAntiForgeryToken()>
-    Function Create(ByVal comment As Comment) As ActionResult
+    Function Create(ByVal comment As Comment, Placeid As Integer) As ActionResult
         If ModelState.IsValid Then
-            db.Comments.Add(comment)
+            Dim Place = db.Places.Find(Placeid)
+            Place.Comments.Add(comment)
             db.SaveChanges()
             Return RedirectToAction("Index")
         End If
@@ -104,7 +121,6 @@ Public Class CommentController
         db.Dispose()
         MyBase.Dispose(disposing)
     End Sub
-
 
 
 End Class

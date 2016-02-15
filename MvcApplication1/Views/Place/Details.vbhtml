@@ -17,7 +17,10 @@ End Code
     </div>
 </fieldset>
 <p>
+    @Html.ActionLink("Add Comment", "Create", "Comment", New With {.PlaceId = Model.Id}, Nothing) |
+    @Html.ActionLink("Edit", "Edit", New With {.id = Model.Id}) 
 
+    <br /><br />
     @Html.ActionLink("Edit", "Edit", New With {.id = Model.Id}) |
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -17,10 +17,10 @@ End Code
     </div>
 
     <div class="display-label">
-        @Html.DisplayNameFor(Function(model) model.UserId)
+        @Html.DisplayNameFor(Function(model) model.User.name)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(Function(model) model.UserId)
+        @Html.DisplayFor(Function(model) model.User.name)
     </div>
 
     <div class="display-label">

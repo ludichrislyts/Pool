@@ -10,6 +10,9 @@ End Code
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(True)
 
+
+    @*@Html.HiddenFor(Function(x) x.Place.Id)*@
+
     @<fieldset>
         <legend>Comment</legend>
 
@@ -21,21 +24,13 @@ End Code
             @Html.ValidationMessageFor(Function(model) model.text)
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(Function(model) model.UserId)
+        @*<div class="editor-label">
+            @Html.LabelFor(Function(model) model.Place, "Place")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(Function(model) model.UserId)
-            @Html.ValidationMessageFor(Function(model) model.UserId)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(Function(model) model.PlaceId, "Place")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("PlaceId", String.Empty)
-            @Html.ValidationMessageFor(Function(model) model.PlaceId)
-        </div>
+            @Html.DropDownList("PlaceID", String.Empty)
+            @Html.ValidationMessageFor(Function(model) model.Place)
+        </div>*@
 
         <p>
             <input type="submit" value="Create" />

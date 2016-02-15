@@ -98,7 +98,7 @@
         Dim place As Place = db.Places.Find(id)
         For Each Item In place.StaticReviews.ToArray
             'Item.User.StaticReviews.Remove(Item)
-            db.StaticReviews.Remove(Item)
+            db.Reviews.Remove(Item)
             db.SaveChanges()
         Next
 

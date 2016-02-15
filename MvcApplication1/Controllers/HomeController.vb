@@ -37,13 +37,14 @@
 
 #Region "Comments"
             db.Users.First.Comments.Add(New Comment With {.Place = db.Places.First, .text = "Hello World"})
+            db.Places.First.Comments.Add(New Comment With {.text = "Hello World 2"})
             db.SaveChanges()
 #End Region
 
-#Region "StaticReviews"
-            db.StaticReviews.Add(New StaticReview With {.Place = db.Places.First, .User = db.Users.First, .review = "Hello World"})
-            db.StaticReviews.Add(New StaticReview With {.Place = db.Places.ToArray(1), .User = db.Users.ToArray(0), .review = "Hello World"})
-            db.StaticReviews.Add(New StaticReview With {.Place = db.Places.ToArray(1), .User = db.Users.ToArray(1), .review = "Hello World"})
+#Region "Reviews"
+            db.Reviews.Add(New Review With {.Place = db.Places.First, .User = db.Users.First, .review = "Hello World"})
+            db.Reviews.Add(New Review With {.Place = db.Places.ToArray(1), .User = db.Users.ToArray(0), .review = "Hello World"})
+            db.Reviews.Add(New Review With {.Place = db.Places.ToArray(1), .User = db.Users.ToArray(1), .review = "Hello World"})
             db.SaveChanges()
 #End Region
 

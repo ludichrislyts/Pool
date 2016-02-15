@@ -11,7 +11,16 @@ Imports System
 Imports System.Collections.Generic
 
 Partial Public Class Badge
+
+    Private _Id As Integer
     Public Property Id As Integer
+        Get
+            Return _Id
+        End Get
+        Private Set(ByVal value As Integer)
+            _Id = value
+        End Set
+    End Property
     Public Property image As String
 
     Public Overridable Property User As ICollection(Of User) = New HashSet(Of User)

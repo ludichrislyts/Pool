@@ -9,7 +9,7 @@
     <EntitySet Name="Badges" EntityType="DatabaseModel.Store.Badges" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Comments" EntityType="DatabaseModel.Store.Comments" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Places" EntityType="DatabaseModel.Store.Places" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="StaticReviews" EntityType="DatabaseModel.Store.StaticReviews" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Reviews" EntityType="DatabaseModel.Store.Reviews" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Users" EntityType="DatabaseModel.Store.Users" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Visits" EntityType="DatabaseModel.Store.Visits" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="VisitPlace" EntityType="DatabaseModel.Store.VisitPlace" store:Type="Tables" Schema="dbo" />
@@ -45,7 +45,7 @@
     </AssociationSet>
     <AssociationSet Name="PlaceStaticReview" Association="DatabaseModel.Store.PlaceStaticReview">
       <End Role="Place" EntitySet="Places" />
-      <End Role="StaticReview" EntitySet="StaticReviews" />
+      <End Role="StaticReview" EntitySet="Reviews" />
     </AssociationSet>
     <AssociationSet Name="PlaceComment" Association="DatabaseModel.Store.PlaceComment">
       <End Role="Place" EntitySet="Places" />
@@ -53,7 +53,7 @@
     </AssociationSet>
     <AssociationSet Name="UserStaticReview" Association="DatabaseModel.Store.UserStaticReview">
       <End Role="User" EntitySet="Users" />
-      <End Role="StaticReview" EntitySet="StaticReviews" />
+      <End Role="StaticReview" EntitySet="Reviews" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Badges">
@@ -84,12 +84,13 @@
     <Property Name="zip" Type="int" Nullable="false" />
     <Property Name="phone" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
-  <EntityType Name="StaticReviews">
+  <EntityType Name="Reviews">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="review" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="rating" Type="smallint" Nullable="false" />
     <Property Name="Place_Id" Type="int" Nullable="false" />
     <Property Name="User_Id" Type="int" Nullable="true" />
   </EntityType>
@@ -108,6 +109,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="VisitPlace">
     <Key>
@@ -147,7 +149,7 @@
   </Association>
   <Association Name="PlaceStaticReview">
     <End Role="Place" Type="DatabaseModel.Store.Places" Multiplicity="1" />
-    <End Role="StaticReview" Type="DatabaseModel.Store.StaticReviews" Multiplicity="*" />
+    <End Role="StaticReview" Type="DatabaseModel.Store.Reviews" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Place">
         <PropertyRef Name="Id" />
@@ -171,7 +173,7 @@
   </Association>
   <Association Name="UserStaticReview">
     <End Role="User" Type="DatabaseModel.Store.Users" Multiplicity="0..1" />
-    <End Role="StaticReview" Type="DatabaseModel.Store.StaticReviews" Multiplicity="*" />
+    <End Role="StaticReview" Type="DatabaseModel.Store.Reviews" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="Id" />
@@ -261,7 +263,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="User" Relationship="DatabaseModel.UserBadge" FromRole="Badge" ToRole="User" />
         </EntityType>
@@ -269,7 +271,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="User" Relationship="DatabaseModel.UserComment" FromRole="Comment" ToRole="User" />
           <NavigationProperty Name="Place" Relationship="DatabaseModel.PlaceComment" FromRole="Comment" ToRole="Place" />
@@ -278,7 +280,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="city" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
@@ -289,20 +291,21 @@
           <NavigationProperty Name="StaticReviews" Relationship="DatabaseModel.PlaceStaticReview" FromRole="Place" ToRole="StaticReview" />
           <NavigationProperty Name="Comments" Relationship="DatabaseModel.PlaceComment" FromRole="Place" ToRole="Comment" />
         </EntityType>
-        <EntityType Name="StaticReview">
+        <EntityType Name="Review">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="review" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Place" Relationship="DatabaseModel.PlaceStaticReview" FromRole="StaticReview" ToRole="Place" />
           <NavigationProperty Name="User" Relationship="DatabaseModel.UserStaticReview" FromRole="StaticReview" ToRole="User" />
+          <Property Name="rating" Type="DatabaseModel.Rating" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
@@ -316,9 +319,10 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <NavigationProperty Name="Places" Relationship="Self.VisitPlace" FromRole="Visits" ToRole="Places" />
           <NavigationProperty Name="Users" Relationship="Self.VisitUser" FromRole="Visits" ToRole="Users" />
+          <Property Name="Date" Type="DateTime" Nullable="false" a:SetterAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </EntityType>
         <Association Name="VisitPlace">
           <End Role="Places" Type="Self.Place" Multiplicity="*" >
@@ -334,7 +338,7 @@
           <EntitySet Name="Badges" EntityType="Self.Badge" />
           <EntitySet Name="Comments" EntityType="Self.Comment" />
           <EntitySet Name="Places" EntityType="Self.Place" />
-          <EntitySet Name="StaticReviews" EntityType="Self.StaticReview" />
+          <EntitySet Name="Reviews" EntityType="DatabaseModel.Review" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="Visits" EntityType="Self.Visit" />
           <AssociationSet Name="VisitPlace" Association="Self.VisitPlace">
@@ -355,7 +359,7 @@
           </AssociationSet>
           <AssociationSet Name="PlaceStaticReview" Association="DatabaseModel.PlaceStaticReview">
             <End Role="Place" EntitySet="Places" />
-            <End Role="StaticReview" EntitySet="StaticReviews" />
+            <End Role="StaticReview" EntitySet="Reviews" />
           </AssociationSet>
           <AssociationSet Name="PlaceComment" Association="DatabaseModel.PlaceComment">
             <End Role="Place" EntitySet="Places" />
@@ -363,7 +367,7 @@
           </AssociationSet>
           <AssociationSet Name="UserStaticReview" Association="DatabaseModel.UserStaticReview">
             <End Role="User" EntitySet="Users" />
-            <End Role="StaticReview" EntitySet="StaticReviews" />
+            <End Role="StaticReview" EntitySet="Reviews" />
           </AssociationSet>
         </EntityContainer>
         <Association Name="UserBadge">
@@ -376,7 +380,7 @@
         </Association>
         <Association Name="PlaceStaticReview">
           <End Type="DatabaseModel.Place" Role="Place" Multiplicity="1" />
-          <End Type="DatabaseModel.StaticReview" Role="StaticReview" Multiplicity="*" />
+          <End Type="DatabaseModel.Review" Role="StaticReview" Multiplicity="*" />
         </Association>
         <Association Name="PlaceComment">
           <End Type="DatabaseModel.Place" Role="Place" Multiplicity="1" />
@@ -384,8 +388,15 @@
         </Association>
         <Association Name="UserStaticReview">
           <End Type="DatabaseModel.User" Role="User" Multiplicity="0..1" />
-          <End Type="DatabaseModel.StaticReview" Role="StaticReview" Multiplicity="*" />
+          <End Type="DatabaseModel.Review" Role="StaticReview" Multiplicity="*" />
         </Association>
+        <EnumType Name="Rating" UnderlyingType="Int16">
+          <Member Name="One" Value="1" />
+          <Member Name="Two" Value="2" />
+          <Member Name="Three" Value="3" />
+          <Member Name="Four" Value="4" />
+          <Member Name="Five" Value="5" />
+        </EnumType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -421,11 +432,12 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="StaticReviews">
-      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.StaticReview)">
-        <MappingFragment StoreEntitySet="StaticReviews">
+    <EntitySetMapping Name="Reviews">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Review)">
+        <MappingFragment StoreEntitySet="Reviews">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="review" ColumnName="review" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -444,6 +456,7 @@
       <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Visit)">
         <MappingFragment StoreEntitySet="Visits">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -480,7 +493,7 @@
       </EndProperty>
       <Condition ColumnName="User_Id" IsNull="false" />
     </AssociationSetMapping>
-    <AssociationSetMapping Name="PlaceStaticReview" TypeName="DatabaseModel.PlaceStaticReview" StoreEntitySet="StaticReviews">
+    <AssociationSetMapping Name="PlaceStaticReview" TypeName="DatabaseModel.PlaceStaticReview" StoreEntitySet="Reviews">
       <EndProperty Name="Place">
         <ScalarProperty Name="Id" ColumnName="Place_Id" />
       </EndProperty>
@@ -496,7 +509,7 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="UserStaticReview" TypeName="DatabaseModel.UserStaticReview" StoreEntitySet="StaticReviews">
+    <AssociationSetMapping Name="UserStaticReview" TypeName="DatabaseModel.UserStaticReview" StoreEntitySet="Reviews">
       <EndProperty Name="User">
         <ScalarProperty Name="Id" ColumnName="User_Id" />
       </EndProperty>

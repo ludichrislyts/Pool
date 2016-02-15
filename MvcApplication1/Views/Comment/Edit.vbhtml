@@ -24,20 +24,20 @@ End Code
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(Function(model) model.UserId)
+            @Html.LabelFor(Function(model) model.User.name)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(Function(model) model.UserId)
-            @Html.ValidationMessageFor(Function(model) model.UserId)
+            @Html.EditorFor(Function(model) model.User.name)
+            @Html.ValidationMessageFor(Function(model) model.User.name)
         </div>
 
-        <div class="editor-label">
+        @*<div class="editor-label">
             @Html.LabelFor(Function(model) model.PlaceId, "Place")
         </div>
         <div class="editor-field">
             @Html.DropDownList("PlaceId", String.Empty)
             @Html.ValidationMessageFor(Function(model) model.PlaceId)
-        </div>
+        </div>*@
 
         <p>
             <input type="submit" value="Save" />

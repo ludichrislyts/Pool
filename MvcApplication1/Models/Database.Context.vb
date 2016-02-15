@@ -25,7 +25,7 @@ Partial Public Class DatabaseEntities
     Public Property Badges() As DbSet(Of Badge)
     Public Property Comments() As DbSet(Of Comment)
     Public Property Places() As DbSet(Of Place)
-    Public Property StaticReviews() As DbSet(Of StaticReview)
+    Public Property Reviews() As DbSet(Of Review)
     Public Property Users() As DbSet(Of User)
     Public Property Visits() As DbSet(Of Visit)
 

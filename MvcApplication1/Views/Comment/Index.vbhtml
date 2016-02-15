@@ -15,7 +15,7 @@ End Code
             @Html.DisplayNameFor(Function(model) model.text)
         </th>
         <th>
-            @Html.DisplayNameFor(Function(model) model.UserId)
+            @Html.DisplayNameFor(Function(model) model.User.name)
         </th>
         <th>
             @Html.DisplayNameFor(Function(model) model.Place.name)
@@ -30,7 +30,7 @@ End Code
             @Html.DisplayFor(Function(modelItem) currentItem.text)
         </td>
         <td>
-            @Html.DisplayFor(Function(modelItem) currentItem.UserId)
+            @Html.DisplayFor(Function(modelItem) currentItem.User.name)
         </td>
         <td>
             @Html.DisplayFor(Function(modelItem) currentItem.Place.name)
