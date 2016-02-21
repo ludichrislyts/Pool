@@ -103,8 +103,8 @@ Namespace MvcApplication1
                 user.Comments.Remove(Item)
             Next
 
-            For Each Item In user.StaticReviews.ToArray
-                user.StaticReviews.Remove(Item)
+            For Each Item In user.Reviews.ToArray
+                user.Reviews.Remove(Item)
             Next
 
             db.Users.Remove(user)

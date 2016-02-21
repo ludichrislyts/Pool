@@ -70,7 +70,7 @@
             'Got_Place.name = place.name
             'db.Entry(Got_Place).State = EntityState.Modified
 
-            db.Entry(place).State = EntityState.Modified
+            db.Entry(place).State = Entity.EntityState.Modified
             db.SaveChanges()
             Return RedirectToAction("Index")
         End If
@@ -96,7 +96,8 @@
     <ActionName("Delete")>
     Function DeleteConfirmed(ByVal id As Integer) As RedirectToRouteResult
         Dim place As Place = db.Places.Find(id)
-        For Each Item In place.StaticReviews.ToArray
+        'For Each Item In place.StaticReviews.ToArray
+        For Each Item In place.Reviews.ToArray
             'Item.User.StaticReviews.Remove(Item)
             db.Reviews.Remove(Item)
             db.SaveChanges()
