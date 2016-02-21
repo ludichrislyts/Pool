@@ -1,27 +1,9 @@
 ﻿Imports System.Data.Entity
 
 Public Class CommentController
-    Inherits System.Web.Mvc.Controller
+    Inherits Controller
 
     Private db As New DatabaseEntities
-
-#Region "       Rest API    >>>"
-    Function [Get](Optional ByVal id As Integer = 0) As ActionResult
-        If id = 0 Then
-            Return Json(db.Comments.ToList, JsonRequestBehavior.AllowGet)
-        Else
-            Return Json(db.Comments.Find(id), JsonRequestBehavior.AllowGet)
-        End If
-    End Function
-
-
-
-
-#End Region
-
-
-
-
 
     '
     ' GET: /Comment/
