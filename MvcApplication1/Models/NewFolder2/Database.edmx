@@ -1,0 +1,562 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Database.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DatabaseStoreContainer">
+    <EntitySet Name="Places" EntityType="Database.Store.Places" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="Database.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Comments" EntityType="Database.Store.Comments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StaticReviews" EntityType="Database.Store.StaticReviews" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Badges" EntityType="Database.Store.Badges" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Avatars" EntityType="Database.Store.Avatars" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Visits" EntityType="Database.Store.Visits" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="VisitPlace" EntityType="Database.Store.VisitPlace" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="VisitUser" EntityType="Database.Store.VisitUser" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="AvatarUser" Association="Database.Store.AvatarUser">
+      <End Role="Avatar" EntitySet="Avatars" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="BadgeUser" Association="Database.Store.BadgeUser">
+      <End Role="Badge" EntitySet="Badges" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="PlaceStaticReview" Association="Database.Store.PlaceStaticReview">
+      <End Role="Place" EntitySet="Places" />
+      <End Role="StaticReview" EntitySet="StaticReviews" />
+    </AssociationSet>
+    <AssociationSet Name="CommentPlace" Association="Database.Store.CommentPlace">
+      <End Role="Comment" EntitySet="Comments" />
+      <End Role="Place" EntitySet="Places" />
+    </AssociationSet>
+    <AssociationSet Name="UserComment" Association="Database.Store.UserComment">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="UserStaticReview" Association="Database.Store.UserStaticReview">
+      <End Role="User" EntitySet="Users" />
+      <End Role="StaticReview" EntitySet="StaticReviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VisitPlace_Visit" Association="Database.Store.FK_VisitPlace_Visit">
+      <End Role="Visit" EntitySet="Visits" />
+      <End Role="VisitPlace" EntitySet="VisitPlace" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VisitPlace_Place" Association="Database.Store.FK_VisitPlace_Place">
+      <End Role="Place" EntitySet="Places" />
+      <End Role="VisitPlace" EntitySet="VisitPlace" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VisitUser_Visit" Association="Database.Store.FK_VisitUser_Visit">
+      <End Role="Visit" EntitySet="Visits" />
+      <End Role="VisitUser" EntitySet="VisitUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VisitUser_User" Association="Database.Store.FK_VisitUser_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="VisitUser" EntitySet="VisitUser" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Places">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="city" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="state" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="zip" Type="int" Nullable="false" />
+    <Property Name="phone" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AvatarId" Type="int" Nullable="false" />
+    <Property Name="BadgeId" Type="int" Nullable="false" />
+    <Property Name="Comment_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="text" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="PlaceId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StaticReviews">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="review" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PlaceId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Badges">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="image" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Avatars">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="image" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Visits">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VisitPlace">
+    <Key>
+      <PropertyRef Name="Visits_Id" />
+      <PropertyRef Name="Places_Id" />
+    </Key>
+    <Property Name="Visits_Id" Type="int" Nullable="false" />
+    <Property Name="Places_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VisitUser">
+    <Key>
+      <PropertyRef Name="Visits_Id" />
+      <PropertyRef Name="Users_Id" />
+    </Key>
+    <Property Name="Visits_Id" Type="int" Nullable="false" />
+    <Property Name="Users_Id" Type="int" Nullable="false" />
+  </EntityType>
+  
+  <Association Name="AvatarUser">
+    <End Role="Avatar" Type="Database.Store.Avatars" Multiplicity="1" />
+    <End Role="User" Type="Database.Store.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Avatar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="AvatarId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BadgeUser">
+    <End Role="Badge" Type="Database.Store.Badges" Multiplicity="1" />
+    <End Role="User" Type="Database.Store.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Badge">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="BadgeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PlaceStaticReview">
+    <End Role="Place" Type="Database.Store.Places" Multiplicity="1" />
+    <End Role="StaticReview" Type="Database.Store.StaticReviews" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Place">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StaticReview">
+        <PropertyRef Name="PlaceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CommentPlace">
+    <End Role="Comment" Type="Database.Store.Comments" Multiplicity="*" />
+    <End Role="Place" Type="Database.Store.Places" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Place">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="PlaceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserComment">
+    <End Role="User" Type="Database.Store.Users" Multiplicity="*" />
+    <End Role="Comment" Type="Database.Store.Comments" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Comment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Comment_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserStaticReview">
+    <End Role="User" Type="Database.Store.Users" Multiplicity="1" />
+    <End Role="StaticReview" Type="Database.Store.StaticReviews" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StaticReview">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VisitPlace_Visit">
+    <End Role="Visit" Type="Database.Store.Visits" Multiplicity="1" />
+    <End Role="VisitPlace" Type="Database.Store.VisitPlace" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Visit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="VisitPlace">
+        <PropertyRef Name="Visits_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VisitPlace_Place">
+    <End Role="VisitPlace" Type="Database.Store.VisitPlace" Multiplicity="*" />
+    <End Role="Place" Type="Database.Store.Places" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Place">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="VisitPlace">
+        <PropertyRef Name="Places_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VisitUser_Visit">
+    <End Role="Visit" Type="Database.Store.Visits" Multiplicity="1" />
+    <End Role="VisitUser" Type="Database.Store.VisitUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Visit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="VisitUser">
+        <PropertyRef Name="Visits_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VisitUser_User">
+    <End Role="VisitUser" Type="Database.Store.VisitUser" Multiplicity="*" />
+    <End Role="User" Type="Database.Store.Users" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="VisitUser">
+        <PropertyRef Name="Users_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Database" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DatabaseContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Places" EntityType="Database.Place" />
+          <EntitySet Name="Users" EntityType="Database.User" />
+          <EntitySet Name="Comments" EntityType="Database.Comment" />
+          <EntitySet Name="StaticReviews" EntityType="Database.StaticReview" />
+          <EntitySet Name="Badges" EntityType="Database.Badge" />
+          <EntitySet Name="Avatars" EntityType="Database.Avatar" />
+          <AssociationSet Name="AvatarUser" Association="Database.AvatarUser">
+            <End Role="Avatar" EntitySet="Avatars" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="PlaceStaticReview" Association="Database.PlaceStaticReview">
+            <End Role="Place" EntitySet="Places" />
+            <End Role="StaticReview" EntitySet="StaticReviews" />
+          </AssociationSet>
+          <AssociationSet Name="CommentPlace" Association="Database.CommentPlace">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="Place" EntitySet="Places" />
+          </AssociationSet>
+          <AssociationSet Name="UserComment" Association="Database.UserComment">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="UserStaticReview" Association="Database.UserStaticReview">
+            <End Role="User" EntitySet="Users" />
+            <End Role="StaticReview" EntitySet="StaticReviews" />
+          </AssociationSet>
+          <EntitySet Name="Visits" EntityType="Database.Visit" />
+          <AssociationSet Name="VisitPlace" Association="Database.VisitPlace">
+            <End Role="Visit" EntitySet="Visits" />
+            <End Role="Place" EntitySet="Places" />
+          </AssociationSet>
+          <AssociationSet Name="VisitUser" Association="Database.VisitUser">
+            <End Role="Visit" EntitySet="Visits" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="UserBadge" Association="Database.UserBadge">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Badge" EntitySet="Badges" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Place">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="address" Nullable="false" />
+          <Property Type="String" Name="city" Nullable="false" />
+          <Property Type="String" Name="state" Nullable="false" />
+          <Property Type="Int32" Name="zip" Nullable="false" />
+          <Property Type="String" Name="phone" Nullable="false" />
+          <NavigationProperty Name="StaticReviews" Relationship="Database.PlaceStaticReview" FromRole="Place" ToRole="StaticReview" />
+          <NavigationProperty Name="Comments" Relationship="Database.CommentPlace" FromRole="Place" ToRole="Comment" />
+          <NavigationProperty Name="Visits" Relationship="Database.VisitPlace" FromRole="Place" ToRole="Visit" />
+          </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="name" Nullable="false" />
+          <Property Type="String" Name="email" Nullable="false" />
+          <Property Type="String" Name="password" Nullable="false" />
+          <NavigationProperty Name="Avatar" Relationship="Database.AvatarUser" FromRole="User" ToRole="Avatar" />
+          <Property Type="Int32" Name="AvatarId" Nullable="false" />
+          <NavigationProperty Name="Comment" Relationship="Database.UserComment" FromRole="User" ToRole="Comment" />
+          <NavigationProperty Name="StaticReviews" Relationship="Database.UserStaticReview" FromRole="User" ToRole="StaticReview" />
+          <NavigationProperty Name="Visits" Relationship="Database.VisitUser" FromRole="User" ToRole="Visit" />
+          <NavigationProperty Name="Badges" Relationship="Database.UserBadge" FromRole="User" ToRole="Badge" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="text" Nullable="false" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <NavigationProperty Name="Place" Relationship="Database.CommentPlace" FromRole="Comment" ToRole="Place" />
+          <Property Type="Int32" Name="PlaceId" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Database.UserComment" FromRole="Comment" ToRole="User" />
+        </EntityType>
+        <EntityType Name="StaticReview">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="review" Nullable="false" />
+          <NavigationProperty Name="Place" Relationship="Database.PlaceStaticReview" FromRole="StaticReview" ToRole="Place" />
+          <Property Type="Int32" Name="PlaceId" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Database.UserStaticReview" FromRole="StaticReview" ToRole="User" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Badge">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="image" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Database.UserBadge" FromRole="Badge" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Avatar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="image" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Database.AvatarUser" FromRole="Avatar" ToRole="User" />
+        </EntityType>
+        <Association Name="AvatarUser">
+          <End Type="Database.Avatar" Role="Avatar" Multiplicity="1" />
+          <End Type="Database.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Avatar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="AvatarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PlaceStaticReview">
+          <End Type="Database.Place" Role="Place" Multiplicity="1" />
+          <End Type="Database.StaticReview" Role="StaticReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Place">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StaticReview">
+              <PropertyRef Name="PlaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CommentPlace">
+          <End Type="Database.Comment" Role="Comment" Multiplicity="*" />
+          <End Type="Database.Place" Role="Place" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Place">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="PlaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserComment">
+          <End Type="Database.User" Role="User" Multiplicity="*" />
+          <End Type="Database.Comment" Role="Comment" Multiplicity="1" />
+        </Association>
+        <Association Name="UserStaticReview">
+          <End Type="Database.User" Role="User" Multiplicity="1" />
+          <End Type="Database.StaticReview" Role="StaticReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StaticReview">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Visit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Places" Relationship="Database.VisitPlace" FromRole="Visit" ToRole="Place" />
+          <NavigationProperty Name="Users" Relationship="Database.VisitUser" FromRole="Visit" ToRole="User" />
+        </EntityType>
+        <Association Name="VisitPlace">
+          <End Type="Database.Visit" Role="Visit" Multiplicity="*" />
+          <End Type="Database.Place" Role="Place" Multiplicity="*" />
+        </Association>
+        <Association Name="VisitUser">
+          <End Type="Database.Visit" Role="Visit" Multiplicity="*" />
+          <End Type="Database.User" Role="User" Multiplicity="*" />
+        </Association>
+        <Association Name="UserBadge">
+          <End Type="Database.User" Role="User" Multiplicity="*" />
+          <End Type="Database.Badge" Role="Badge" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DatabaseStoreContainer" CdmEntityContainer="DatabaseContainer">
+    <EntitySetMapping Name="Places">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.Place)">
+        <MappingFragment StoreEntitySet="Places">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="zip" ColumnName="zip" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="AvatarId" ColumnName="AvatarId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.Comment)">
+        <MappingFragment StoreEntitySet="Comments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="PlaceId" ColumnName="PlaceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StaticReviews">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.StaticReview)">
+        <MappingFragment StoreEntitySet="StaticReviews">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="review" ColumnName="review" />
+          <ScalarProperty Name="PlaceId" ColumnName="PlaceId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Badges">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.Badge)">
+        <MappingFragment StoreEntitySet="Badges">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="image" ColumnName="image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Avatars">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.Avatar)">
+        <MappingFragment StoreEntitySet="Avatars">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="image" ColumnName="image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Visits">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.Visit)">
+        <MappingFragment StoreEntitySet="Visits">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UserComment" TypeName="Database.UserComment" StoreEntitySet="Users">
+      <EndProperty Name="Comment">
+        <ScalarProperty Name="Id" ColumnName="Comment_Id" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="VisitPlace" TypeName="Database.VisitPlace" StoreEntitySet="VisitPlace">
+      <EndProperty Name="Visit">
+        <ScalarProperty Name="Id" ColumnName="Visits_Id" />
+      </EndProperty>
+      <EndProperty Name="Place">
+        <ScalarProperty Name="Id" ColumnName="Places_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="VisitUser" TypeName="Database.VisitUser" StoreEntitySet="VisitUser">
+      <EndProperty Name="Visit">
+        <ScalarProperty Name="Id" ColumnName="Visits_Id" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="Users_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
