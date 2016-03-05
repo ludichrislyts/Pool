@@ -23,6 +23,11 @@ Partial Public Class Place
 
     Public Property zip As Integer
 
+    Public Property rules As Integer
+
+    Public Property pricing As String
+
+
     <Required>
     Public Property phone As String
 
