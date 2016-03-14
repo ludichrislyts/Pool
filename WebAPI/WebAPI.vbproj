@@ -243,13 +243,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Views\Login\Index.aspx.designer.vb">
-      <DependentUpon>Index.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Login\Index.aspx.vb">
-      <DependentUpon>Index.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -287,13 +280,11 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.vbhtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.vbhtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.vbhtml" />
-    <Content Include="MvcDiagnostics.aspx" />
     <Content Include="Views\Comment\Create.vbhtml" />
     <Content Include="Views\Comment\Delete.vbhtml" />
     <Content Include="Views\Comment\Details.vbhtml" />
     <Content Include="Views\Comment\Edit.vbhtml" />
     <Content Include="Views\Comment\Index.vbhtml" />
-    <Content Include="Views\Login\Index.aspx" />
     <Content Include="Views\Place\Create.vbhtml" />
     <Content Include="Views\Place\Delete.vbhtml" />
     <Content Include="Views\Place\Details.vbhtml" />
@@ -373,7 +364,6 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
