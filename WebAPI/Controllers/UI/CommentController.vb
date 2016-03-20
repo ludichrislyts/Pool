@@ -9,7 +9,7 @@ Public Class CommentController
     ' GET: /Comment/
 
     Function Index() As ActionResult
-        Dim comments = db.Comments.Include(Function(c) c.Place)
+        Dim comments = db.Comments.Include(Function(c) c.Place_Id)
         Return View(comments.ToList())
     End Function
 
@@ -47,7 +47,7 @@ Public Class CommentController
             Return RedirectToAction("Index")
         End If
 
-        ViewBag.PlaceId = New SelectList(db.Places, "Id", "name", comment.Place)
+        ViewBag.PlaceId = New SelectList(db.Places, "Id", "name", comment.Place_Id)
         Return View(comment)
     End Function
 
@@ -59,7 +59,7 @@ Public Class CommentController
         If IsNothing(comment) Then
             Return HttpNotFound()
         End If
-        ViewBag.PlaceId = New SelectList(db.Places, "Id", "name", comment.Place)
+        ViewBag.PlaceId = New SelectList(db.Places, "Id", "name", comment.Place_Id)
         Return View(comment)
     End Function
 
@@ -75,7 +75,7 @@ Public Class CommentController
             Return RedirectToAction("Index")
         End If
 
-        ViewBag.PlaceId = New SelectList(db.Places, "Id", "name", comment.Place)
+        ViewBag.PlaceId = New SelectList(db.Places, "Id", "name", comment.Place_Id)
         Return View(comment)
     End Function
 
@@ -107,6 +107,5 @@ Public Class CommentController
         db.Dispose()
         MyBase.Dispose(disposing)
     End Sub
-
 
 End Class

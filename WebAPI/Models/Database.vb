@@ -23,11 +23,11 @@ Partial Public Class DatabaseEntities
             .WithMany(Function(e) e.Badges) _
             .Map(Function(m) m.ToTable("UserBadge").MapLeftKey("Badges_Id"))
 
-        modelBuilder.Entity(Of Place)() _
-            .HasMany(Function(e) e.Comments) _
-            .WithRequired(Function(e) e.Place) _
-            .HasForeignKey(Function(e) e.Place_Id) _
-            .WillCascadeOnDelete(False)
+        'modelBuilder.Entity(Of Place)() _
+        '    .HasMany(Function(e) e.Comments) _
+        '    .WithRequired(Function(e) e.User) _
+        '    .HasForeignKey(Function(e) e.User_Id) _
+        '    .WillCascadeOnDelete(False)
 
         modelBuilder.Entity(Of Place)() _
             .HasMany(Function(e) e.Reviews) _
@@ -40,10 +40,10 @@ Partial Public Class DatabaseEntities
             .WithMany(Function(e) e.Places) _
             .Map(Function(m) m.ToTable("VisitPlace").MapLeftKey("Places_Id").MapRightKey("Visits_Id"))
 
-        modelBuilder.Entity(Of User)() _
-            .HasMany(Function(e) e.Comments) _
-            .WithOptional(Function(e) e.User) _
-            .HasForeignKey(Function(e) e.User_Id)
+        'modelBuilder.Entity(Of User)() _
+        '    .HasMany(Function(e) e.Comments)
+        '.WithOptional(Function(e) e.User) _
+        '.HasForeignKey(Function(e) e.User_Id)
 
         modelBuilder.Entity(Of User)() _
             .HasMany(Function(e) e.Reviews) _

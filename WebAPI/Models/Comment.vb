@@ -12,7 +12,7 @@ Partial Public Class Comment
 
     Public Property Place_Id As Integer
 
-    Public Overridable Property Place As Place
+    'Public Overridable Property Place As Place
 
-    Public Overridable Property User As User
+    'Public Overridable Property User As User
 End Class

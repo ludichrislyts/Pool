@@ -22,7 +22,6 @@
             'db.Avatars.Add(New Avatar With {.Image = })
             'db.SaveChanges()
 
-
 #Region "Places"
             db.Places.Add(New Place With {.name = "Sam's Billiards", .address = "1845 NE 41st Ave", .city = "Portland", .state = "OR", .zip = 97212, .phone = "(503) 282-8266"})
             db.Places.Add(New Place With {.name = "Uptown Billiards Club", .address = "120 NW 23rd Ave", .city = "Portland", .state = "OR", .zip = 97210, .phone = "(503) 226-6909"})
@@ -36,7 +35,7 @@
 #End Region
 
 #Region "Comments"
-            db.Users.First.Comments.Add(New Comment With {.Place = db.Places.First, .text = "Hello World", .Date = Now})
+            db.Users.First.Comments.Add(New Comment With {.Place_Id = db.Places.Find.Id, .text = "Hello World", .Date = Now})
             db.Places.First.Comments.Add(New Comment With {.text = "Hello World 2", .Date = Now})
             db.SaveChanges()
 #End Region
@@ -54,8 +53,6 @@
             Visits1.Users.Add(db.Users.First)
             db.SaveChanges()
 #End Region
-
-
 
             db.SaveChanges()
             Return Redirect(NameOf(Index))
