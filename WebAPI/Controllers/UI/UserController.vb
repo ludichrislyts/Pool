@@ -91,21 +91,24 @@ Namespace WebAPI
         <ActionName("Delete")>
         Function DeleteConfirmed(ByVal id As Integer) As RedirectToRouteResult
             Dim user As User = db.Users.Find(id)
-            For Each Item In user.Badges.ToArray
-                db.Badges.Remove(Item)
-            Next
 
-            For Each Item In user.Visits.ToArray
-                db.Visits.Remove(Item)
-            Next
+            'For Each Item In user.Visits.ToArray
+            '    db.Visits.Remove(Item)
+            'Next
+            db.Visits.Remove(db.Visits.Where(Function(v) v.uid = user.Id))
 
-            For Each Item In user.Comments.ToArray
-                user.Comments.Remove(Item)
-            Next
+            'For Each Item In user.Comments.ToArray
+            '    user.Comments.Remove(Item)
+            'Next
 
-            For Each Item In user.Reviews.ToArray
-                user.Reviews.Remove(Item)
-            Next
+            ' TODO, decide whether to delete comments from deleted users...might want to keep for posterity
+            db.Comments.Remove(db.Comments.Where(Function(c) c.uid = user.Id))
+
+            'For Each Item In user.Reviews.ToArray
+            '    user.Reviews.Remove(Item)
+            'Next
+            ' TODO. same as above, decide to delete reviews or not
+            db.Reviews.Remove(db.Reviews.Where(Function(r) r.uid = user.Id))
 
             db.Users.Remove(user)
             db.SaveChanges()

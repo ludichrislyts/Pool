@@ -35,26 +35,24 @@
 #End Region
 
 #Region "Comments"
-            db.Users.First.Comments.Add(New Comment With {.Place_Id = db.Places.Find.Id, .text = "Hello World", .Date = Now})
-            db.Places.First.Comments.Add(New Comment With {.text = "Hello World 2", .Date = Now})
+            'db.Users.First.Comments.Add(New Comment With {.Place_Id = db.Places.Find.Id, .text = "Hello World", .Date = Now})
+            'db.Places.First.Comments.Add(New Comment With {.text = "Hello World 2", .Date = Now})
+            db.Comments.Add(New Comment With {.uid = db.Users.Find.Id, .pid = db.Places.Find.Id, .text = "Hello Test", .Date = Now})
             db.SaveChanges()
 #End Region
 
 #Region "Reviews"
-            db.Reviews.Add(New Review With {.Place = db.Places.First, .User = db.Users.First, .review = "Hello World"})
-            db.Reviews.Add(New Review With {.Place = db.Places.ToArray(1), .User = db.Users.ToArray(0), .review = "Hello World"})
-            db.Reviews.Add(New Review With {.Place = db.Places.ToArray(1), .User = db.Users.ToArray(1), .review = "Hello World"})
+            db.Reviews.Add(New Review With {.pid = db.Places.Find.Id, .uid = db.Users.Find.Id, .review = "Hello World"})
             db.SaveChanges()
 #End Region
 
 #Region "Visits"
-            Dim Visits1 As New Visit
-            Visits1.Places.Add(db.Places.First)
-            Visits1.Users.Add(db.Users.First)
+            'Dim Visits1 As New Visit
+            'Visits1.Places.Add(db.Places.First)
+            'Visits1.Users.Add(db.Users.First)
+            db.Visits.Add(New Visit With {.pid = db.Places.Find.Id, .uid = db.Users.Find.Id})
             db.SaveChanges()
 #End Region
-
-            db.SaveChanges()
             Return Redirect(NameOf(Index))
         End Function
 

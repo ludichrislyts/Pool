@@ -221,6 +221,15 @@
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603202014462_InitialCreate.Designer.vb">
+      <DependentUpon>201603202014462_InitialCreate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603202014462_InitialCreate.vb" />
+    <Compile Include="Migrations\201603210005276_UpdateDb.Designer.vb">
+      <DependentUpon>201603210005276_UpdateDb.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603210005276_UpdateDb.vb" />
+    <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="Models\Badge.vb" />
     <Compile Include="Models\Comment.vb" />
     <Compile Include="Models\Database.vb" />
@@ -252,6 +261,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201603202014462_InitialCreate.resx">
+      <DependentUpon>201603202014462_InitialCreate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603210005276_UpdateDb.resx">
+      <DependentUpon>201603210005276_UpdateDb.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>

@@ -97,26 +97,22 @@
     Function DeleteConfirmed(ByVal id As Integer) As RedirectToRouteResult
         Dim place As Place = db.Places.Find(id)
         'For Each Item In place.StaticReviews.ToArray
-        For Each Item In place.Reviews.ToArray
-            'Item.User.StaticReviews.Remove(Item)
-            db.Reviews.Remove(Item)
-            db.SaveChanges()
-        Next
+        'For Each Item In place.Reviews.ToArray
+        '    'Item.User.StaticReviews.Remove(Item)
+        '    db.Reviews.Remove(Item)
+        '    db.SaveChanges()
+        'Next
 
-
-        For Each Item In place.Comments.ToArray
-            'Item.User.Comments.Remove(Item)
-            db.Comments.Remove(Item)
-            db.SaveChanges()
-        Next
+        'For Each Item In place.Comments.ToArray
+        '    'Item.User.Comments.Remove(Item)
+        '    db.Comments.Remove(Item)
+        '    db.SaveChanges()
+        'Next
 
         db.Places.Remove(place)
         db.SaveChanges()
         Return RedirectToAction("Index")
     End Function
-
-
-
 
     Function [Get](Optional ByVal id As Integer = 0) As ActionResult
         If id = 0 Then

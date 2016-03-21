@@ -9,7 +9,7 @@ Public Class CommentController
     ' GET: /Comment/
 
     Function Index() As ActionResult
-        Dim comments = db.Comments.Include(Function(c) c.Place_Id)
+        Dim comments = db.Comments.Include(Function(c) c.pid)
         Return View(comments.ToList())
     End Function
 
@@ -40,14 +40,14 @@ Public Class CommentController
     Function Create(ByVal comment As Comment, Placeid As Integer) As ActionResult
         comment.Date = Now
 
-        If ModelState.IsValid Then
-            Dim Place = db.Places.Find(Placeid)
-            Place.Comments.Add(comment)
-            db.SaveChanges()
-            Return RedirectToAction("Index")
-        End If
+        'If ModelState.IsValid Then
+        '    Dim Place = db.Places.Find(Placeid)
+        '    Place.Comments.Add(comment)
+        '    db.SaveChanges()
+        '    Return RedirectToAction("Index")
+        'End If
 
-        ViewBag.PlaceId = New SelectList(db.Places, "Id", "name", comment.Place_Id)
+        ViewBag.PlaceId = New SelectList(db.Places, "Id", "name", comment.pid)
         Return View(comment)
     End Function
 
@@ -59,7 +59,7 @@ Public Class CommentController
         If IsNothing(comment) Then
             Return HttpNotFound()
         End If
-        ViewBag.PlaceId = New SelectList(db.Places, "Id", "name", comment.Place_Id)
+        ViewBag.PlaceId = New SelectList(db.Places, "Id", "name", comment.pid)
         Return View(comment)
     End Function
 
@@ -75,7 +75,7 @@ Public Class CommentController
             Return RedirectToAction("Index")
         End If
 
-        ViewBag.PlaceId = New SelectList(db.Places, "Id", "name", comment.Place_Id)
+        ViewBag.PlaceId = New SelectList(db.Places, "Id", "name", comment.pid)
         Return View(comment)
     End Function
 

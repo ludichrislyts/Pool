@@ -18,41 +18,22 @@ Partial Public Class DatabaseEntities
     Public Overridable Property Visits As DbSet(Of Visit)
 
     Protected Overrides Sub OnModelCreating(ByVal modelBuilder As DbModelBuilder)
-        modelBuilder.Entity(Of Badge)() _
-            .HasMany(Function(e) e.Users) _
-            .WithMany(Function(e) e.Badges) _
-            .Map(Function(m) m.ToTable("UserBadge").MapLeftKey("Badges_Id"))
+        modelBuilder.Entity(Of Badge)()
 
-        'modelBuilder.Entity(Of Place)() _
-        '    .HasMany(Function(e) e.Comments) _
-        '    .WithRequired(Function(e) e.User) _
-        '    .HasForeignKey(Function(e) e.User_Id) _
-        '    .WillCascadeOnDelete(False)
+        modelBuilder.Entity(Of Comment)() _
+            .HasKey(Function(e) e.uid).HasKey(Function(e) e.pid)
 
-        modelBuilder.Entity(Of Place)() _
-            .HasMany(Function(e) e.Reviews) _
-            .WithRequired(Function(e) e.Place) _
-            .HasForeignKey(Function(e) e.Place_Id) _
-            .WillCascadeOnDelete(False)
+        modelBuilder.Entity(Of Place)()
 
-        modelBuilder.Entity(Of Place)() _
-            .HasMany(Function(e) e.Visits) _
-            .WithMany(Function(e) e.Places) _
-            .Map(Function(m) m.ToTable("VisitPlace").MapLeftKey("Places_Id").MapRightKey("Visits_Id"))
+        modelBuilder.Entity(Of Review)() _
+            .HasKey(Function(e) e.uid).HasKey(Function(e) e.pid)
 
-        'modelBuilder.Entity(Of User)() _
-        '    .HasMany(Function(e) e.Comments)
-        '.WithOptional(Function(e) e.User) _
-        '.HasForeignKey(Function(e) e.User_Id)
+        modelBuilder.Entity(Of Visit)() _
+            .HasKey(Function(e) e.pid).HasKey(Function(e) e.uid)
+
+        modelBuilder.Entity(Of User)()
 
         modelBuilder.Entity(Of User)() _
-            .HasMany(Function(e) e.Reviews) _
-            .WithOptional(Function(e) e.User) _
-            .HasForeignKey(Function(e) e.User_Id)
-
-        modelBuilder.Entity(Of User)() _
-            .HasMany(Function(e) e.Visits) _
-            .WithMany(Function(e) e.Users) _
-            .Map(Function(m) m.ToTable("VisitUser").MapLeftKey("Users_Id").MapRightKey("Visits_Id"))
+            .HasKey(Function(e) e.bid).HasKey(Function(e) e.cid).HasKey(Function(e) e.rid).HasKey(Function(e) e.vid)
     End Sub
 End Class

@@ -7,12 +7,12 @@ Imports System.Runtime.Serialization
 
 <DataContract(IsReference:=True)>
 Partial Public Class User
-    Public Sub New()
-        Comments = New HashSet(Of Comment)()
-        Reviews = New HashSet(Of Review)()
-        Badges = New HashSet(Of Badge)()
-        Visits = New HashSet(Of Visit)()
-    End Sub
+    'Public Sub New()
+    '    Comments = New HashSet(Of Comment)()
+    '    Reviews = New HashSet(Of Review)()
+    '    Badges = New HashSet(Of Badge)()
+    '    Visits = New HashSet(Of Visit)()
+    'End Sub
 
     <DataMember>
     Public Property Id As Integer
@@ -32,15 +32,20 @@ Partial Public Class User
     <DataMember>
     Public Property Avatar As String
 
-    <DataMember>
-    Public Overridable Property Comments As ICollection(Of Comment)
+    Public Property cid As Integer
+    Public Property rid As Integer
+    Public Property bid As Integer
+    Public Property vid As Integer
 
-    <DataMember>
-    Public Overridable Property Reviews As ICollection(Of Review)
+    '<DataMember>
+    'Public Overridable Property Comments As ICollection(Of Comment)
 
-    <DataMember>
-    Public Overridable Property Badges As ICollection(Of Badge)
+    '<DataMember>
+    'Public Overridable Property Reviews As ICollection(Of Review)
 
-    <DataMember>
-    Public Overridable Property Visits As ICollection(Of Visit)
+    '<DataMember>
+    'Public Overridable Property Badges As ICollection(Of Badge)
+
+    '<DataMember>
+    'Public Overridable Property Visits As ICollection(Of Visit)
 End Class

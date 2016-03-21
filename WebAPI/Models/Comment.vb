@@ -8,9 +8,9 @@ Partial Public Class Comment
 
     Public Property [Date] As Date
 
-    Public Property User_Id As Integer?
+    Public Property uid As Integer
 
-    Public Property Place_Id As Integer
+    Public Property pid As Integer
 
     'Public Overridable Property Place As Place
 
