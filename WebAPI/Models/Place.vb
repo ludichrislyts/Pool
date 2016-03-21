@@ -31,9 +31,12 @@ Partial Public Class Place
     <Required>
     Public Property phone As String
 
+    <Runtime.Serialization.IgnoreDataMember>
     Public Overridable Property Comments As ICollection(Of Comment)
 
+    <Runtime.Serialization.IgnoreDataMember>
     Public Overridable Property Reviews As ICollection(Of Review)
 
+    <Runtime.Serialization.IgnoreDataMember>
     Public Overridable Property Visits As ICollection(Of Visit)
 End Class

@@ -10,5 +10,6 @@ Partial Public Class Badge
     <Required>
     Public Property image As String
 
+    <Runtime.Serialization.IgnoreDataMember>
     Public Overridable Property Users As ICollection(Of User)
 End Class

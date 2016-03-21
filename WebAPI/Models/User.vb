@@ -4,6 +4,8 @@ Imports System.ComponentModel.DataAnnotations
 Imports System.ComponentModel.DataAnnotations.Schema
 Imports System.Data.Entity.Spatial
 Imports System.Runtime.Serialization
+Imports System.Xml.Serialization
+Imports Newtonsoft.Json
 
 <DataContract(IsReference:=True)>
 Partial Public Class User
@@ -32,15 +34,15 @@ Partial Public Class User
     <DataMember>
     Public Property Avatar As String
 
-    <DataMember>
+    <IgnoreDataMember>
     Public Overridable Property Comments As ICollection(Of Comment)
 
-    <DataMember>
+    <IgnoreDataMember>
     Public Overridable Property Reviews As ICollection(Of Review)
 
-    <DataMember>
+    <IgnoreDataMember>
     Public Overridable Property Badges As ICollection(Of Badge)
 
-    <DataMember>
+    <IgnoreDataMember>
     Public Overridable Property Visits As ICollection(Of Visit)
 End Class

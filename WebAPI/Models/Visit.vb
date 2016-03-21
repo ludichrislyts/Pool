@@ -8,7 +8,9 @@ Partial Public Class Visit
 
     Public Property [Date] As Date
 
+    <Runtime.Serialization.IgnoreDataMember>
     Public Overridable Property Places As ICollection(Of Place)
 
+    <Runtime.Serialization.IgnoreDataMember>
     Public Overridable Property Users As ICollection(Of User)
 End Class
