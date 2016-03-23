@@ -302,6 +302,10 @@
     <Content Include="Views\User\Index.vbhtml" />
     <None Include="My Project\PublishProfiles\PoolHalls - Web Deploy %282%29.pubxml" />
     <None Include="My Project\PublishProfiles\PoolHalls - Web Deploy.pubxml" />
+    <None Include="My Project\PublishProfiles\smartshark %282%29.pubxml" />
+    <None Include="My Project\PublishProfiles\smartshark %283%29.pubxml" />
+    <None Include="My Project\PublishProfiles\smartshark %284%29.pubxml" />
+    <None Include="My Project\PublishProfiles\smartshark.pubxml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
